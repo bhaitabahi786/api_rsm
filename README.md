@@ -1,2 +1,2 @@
 # api_rsm
-Fast Api for Royal masala
+Fast Api for Royal masala App

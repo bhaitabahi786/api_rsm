@@ -1,0 +1,77 @@
+{
+  "date": "2025-02-04",
+  "billNo": "B001",
+  "gstNo": "GST01",
+  "PName": "DD",
+  "Phone": "string",
+  "Address": "string",
+  "items": [
+    {
+      "product_name": "jira",
+      "qty": 5000,
+      "rate": 20,
+      "amount": 1000
+    }
+  ]
+}
+
+Sales 
+
+{
+  "date": "2025-02-04",
+  "billNo": "B001",
+  "clientId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "CName": "S12",
+  "Phone": "string",
+  "Address": "string",
+  "sellerName": "GG",
+  "items": [
+    {
+      "product_name": "javetri",
+      "qty": 500,
+      "rate": 1200,
+      "amount": 600
+    }
+  ]
+}
+
+
+{
+  "date": "2025-02-10",
+  "billNo": "B001",
+  "CName": "C1",
+  "Phone": "7879",
+  "Address": "A1",
+  "sellerName": "S1",
+  "totalAmount": 10000,
+  "amountReceived": 0,
+  "expectedDate": "2025-02-10",
+  "items": [
+    {
+      "product_name": "jira",
+      "qty": 5000,
+      "rate": 20,
+      "amount": 10000
+    }
+  ]
+}
+
+{
+    "date": "2025-02-10",
+    "billNo": "B001",
+    "CName": "C1",
+    "Phone": "7879",
+    "Address": "A1",
+    "totalAmount": 10000,
+    "id": "7ab2ea30-c12a-459b-9be0-7c2adce4bb2d",
+    "advAmount": [
+      {
+        "receivedDate": "2025-02-10",
+        "amount": 0,
+        "totalPayReceived": null,
+        "id": "21b4164b-1814-4ea5-9991-2c38c99a3b8c"
+      }
+    ]
+  }
+
+
