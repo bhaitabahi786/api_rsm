@@ -22,7 +22,6 @@ class productPublic(productBase):
 class productCreate(productBase):
     pass
 
-
 # ---- Clients record table 
 
 class clientBase(SQLModel):

@@ -3,9 +3,10 @@ from typing import Annotated, List, Text
 from fastapi import FastAPI,Depends, HTTPException, Query
 from sqlmodel import Field, Session, SQLModel, create_engine, select
 import uuid
+from sqlalchemy.sql import text 
 from sqlalchemy import desc
 import models as mm
-
+from fastapi.middleware.cors import CORSMiddleware
 
 sqlite_file_name = "database.db"
 sqlite_url = f"sqlite:///{sqlite_file_name}"
@@ -27,6 +28,20 @@ SessionDep = Annotated[Session, Depends(get_session)]
 
 app = FastAPI()
 
+# CORS Policy Change according to URL
+
+origins = [
+    "http://localhost:4200",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Create table and db
 @app.on_event("startup")
 def on_startup():
@@ -46,9 +61,22 @@ def create_product(product: mm.productCreate, session: SessionDep):
 @app.get("/products/", response_model=List[mm.productPublic])
 def get_product(limit: int, session: SessionDep):
     products = session.exec(select(mm.Product).limit(limit)).all()
-    # Convert to Pydantic model (ProductPublic)
-    # return [mm.productPublic.model_validate(prod) for prod in products]
+    
     return products
+
+@app.get("/All_Stocks/")
+def allStocks(session: SessionDep):
+    result = session.execute(text(
+        """
+        SELECT name, 
+               SUM(purchase_qty) AS total_purchase, 
+               SUM(sale_qty) AS total_sale 
+        FROM Product 
+        GROUP BY name
+        """)
+    ).fetchall()
+
+    return [{"product_name": row[0], "total_purchase": row[1], "total_sale": row[2]} for row in result]
 
 # sales Table entries 
 
